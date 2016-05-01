@@ -1,0 +1,44 @@
+{
+  "name": "rollodeqc-gh-repos",
+  "version": "0.0.0",
+  "description": "RoLLodeQc utility to fetch repos.",
+  "license": "AGPL-3.0",
+  "repository": "millette/rollodeqc-gh-repos",
+  "author": {
+    "name": "Robin Millette",
+    "email": "robin@millette.info",
+    "url": "http://robin.millette.info"
+  },
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "standard && nyc ava",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "rollodeqc"
+  ],
+  "dependencies": {
+    "gh-got": "^4.0.0",
+    "meow": "^3.7.0",
+    "rollodeqc-gh-bookworm": "^0.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.14.0",
+    "babel-eslint": "^6.0.4",
+    "coveralls": "^2.11.9",
+    "nyc": "^6.4.1",
+    "standard": "^6.0.8"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
