@@ -25,21 +25,41 @@ const qs = require('querystring')
 
 // npm
 const ghGot = require('gh-got')
+const omitBy = require('lodash.omitby')
 
 // own
 const bookworm = require('rollodeqc-gh-bookworm')
+const utils = require('rollodeqc-gh-utils')
 
-module.exports = function (username, options) {
-  if (typeof options !== 'object') {
-    options = {
-      type: 'all',
-      sort: 'created',
-      direction: 'asc'
-    }
+const fetchPage = (options) => ghGot(
+  typeof options === 'object'
+    ? `users/${options.username}/repos?` + qs.stringify(options)
+    : options,
+  { headers: { accept: 'application/vnd.github.drax-preview+json' } }
+)
+
+const methods = {
+  getItems: (result) => result && result.body,
+  updateItems: (result, inner) => {
+    inner.body = result.body.concat(inner.body)
+    return inner
   }
-  if (!options.per_page) { options.per_page = 100 }
-  return ghGot(
-    'users/${username}/repos?' + qs.stringify(options),
-    { headers: { accept: 'application/vnd.github.drax-preview+json' } }
-  )
 }
+
+module.exports = (username) => bookworm.bookworm({
+  username: username,
+  type: 'all',
+  sort: 'created',
+  direction: 'asc',
+  per_page: 100
+}, fetchPage, methods)
+  .then((x) => x.body)
+  .then((x) => x
+    .map((y) => utils.chosenFields(y))
+    .map((y) => {
+      delete y.permissions
+      y.owner = { login: y.owner.login, id: y.owner.id, type: y.owner.type }
+      return y
+    })
+    .map((y) => omitBy(y, (v) => !v))
+  )

@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-// see https://github.com/babel/babel-eslint/issues/163
-var _eslint_workaround = true // eslint-disable-line no-unused-vars
+0 > 1 // see https://github.com/babel/babel-eslint/issues/163
 
 /*
 RoLLodeQc utility to fetch repos.
@@ -42,6 +41,5 @@ var cli = meow([
 
 rollodeqcGhRepos(cli.input[0] || 'unicorns')
   .then((x) => {
-    console.log(JSON.stringify(x.headers, null, ' '))
-    console.log(JSON.stringify(x.body, null, ' '))
+    console.log(JSON.stringify(x, null, ' '))
   })
