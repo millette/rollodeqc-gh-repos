@@ -55,6 +55,7 @@ const fetchLanguagesImp = (repo) => ghGot(`repos/${repo.full_name}/languages`)
     if (Object.keys(x).length) { repo.languages = x }
     return repo
   })
+  .catch(() => repo)
 
 const fetchLanguages = (repo) => limiter()
   .then(() => fetchLanguagesImp(repo))
@@ -79,7 +80,7 @@ module.exports = (username) => bookworm.bookworm({
   .then((x) => utils.rateLimit().then((rl) => {
     limiter = module.exports.setLimiter(
       5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
-    return Promise.all(p = x.map((y) => fetchLanguages(y)))
+    return Promise.all(x.map((y) => fetchLanguages(y)))
   }))
 
 module.exports.clearLimiter = function () { limiter = null }

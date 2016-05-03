@@ -40,16 +40,21 @@ const cli = meow([
   '  ponies & rainbows'
 ])
 
-let running = true
+var running = true
 
-const isDone = function isDone() {
+const isDone = function isDone(w) {
+  if (!w) { w = 300 }
   setTimeout(() => {
-    if (running) { isDone() }
-  }, 100)
+    if (running) { isDone(w) }
+  }, w)
 }()
 
 rollodeqcGhRepos(cli.input[0] || 'unicorns')
   .then((x) => {
     console.log(JSON.stringify(x, null, ' '))
+    running = false
+  })
+  .catch((e) => {
+    console.log('Oh my...', e)
     running = false
   })
