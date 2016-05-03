@@ -22,10 +22,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 'use strict'
-var meow = require('meow')
-var rollodeqcGhRepos = require('./')
 
-var cli = meow([
+const meow = require('meow')
+const rollodeqcGhRepos = require('./')
+
+const cli = meow([
   'Usage',
   '  $ rollodeqc-gh-repos [input]',
   '',
@@ -39,7 +40,16 @@ var cli = meow([
   '  ponies & rainbows'
 ])
 
+let running = true
+
+const isDone = function isDone() {
+  setTimeout(() => {
+    if (running) { isDone() }
+  }, 100)
+}()
+
 rollodeqcGhRepos(cli.input[0] || 'unicorns')
   .then((x) => {
     console.log(JSON.stringify(x, null, ' '))
+    running = false
   })

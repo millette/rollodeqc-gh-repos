@@ -49,32 +49,15 @@ const methods = {
 
 let limiter
 
-const fetchLanguagesImp = (repo) => {
-  // console.log('REPO:', repo)
-  return ghGot(`repos/${repo.full_name}/languages`)
-    .then((x) => x.body)
-    .then((x) => {
-      if (Object.keys(x).length) { repo.languages = x }
-      return repo
-    })
-}
+const fetchLanguagesImp = (repo) => ghGot(`repos/${repo.full_name}/languages`)
+  .then((x) => x.body)
+  .then((x) => {
+    if (Object.keys(x).length) { repo.languages = x }
+    return repo
+  })
 
 const fetchLanguages = (repo) => limiter()
   .then(() => fetchLanguagesImp(repo))
-
-/*
-const fetchLanguages = (repo) => {
-  console.log('LIMITER IS:', limiter, typeof limiter)
-  return limiter
-  ? limiter().then(() => fetchLanguagesImp(repo))
-  : utils.rateLimit().then((rl) => {
-    console.log('SETTING LIMITER', rl)
-    limiter = module.exports.setLimiter(
-      5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
-    return limiter().then(() => fetchLanguagesImp(repo))
-  })
-}
-*/
 
 module.exports = (username) => bookworm.bookworm({
   username: username,
@@ -93,21 +76,15 @@ module.exports = (username) => bookworm.bookworm({
     })
     .map((y) => omitBy(y, (v) => !v))
   )
-  .then((x) => {
-    // const keepX = x
-    return utils.rateLimit().then((rl) => {
-      limiter = module.exports.setLimiter(
-        5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
-      // return keepX
-      return Promise.all(x.map((y) => fetchLanguages(y)))
-    })
-  })
-//  .then((x) => Promise.all(x.map((y) => fetchLanguages(y))))
+  .then((x) => utils.rateLimit().then((rl) => {
+    limiter = module.exports.setLimiter(
+      5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
+    return Promise.all(p = x.map((y) => fetchLanguages(y)))
+  }))
 
 module.exports.clearLimiter = function () { limiter = null }
 
 module.exports.setLimiter = function (c, t) {
   limiter = rateLimit(c, t)
-  // console.log('LIMIT SET:', c, t)
   return limiter
 }
