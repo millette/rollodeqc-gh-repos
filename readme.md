@@ -13,7 +13,7 @@ $ npm install --save rollodeqc-gh-repos
 ```js
 const rollodeqcGhRepos = require('rollodeqc-gh-repos');
 
-rollodeqcGhRepos('unicorns');
+rollodeqcGhRepos('millette');
 //=> 'unicorns & rainbows'
 ```
 
