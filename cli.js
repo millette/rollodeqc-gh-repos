@@ -42,12 +42,12 @@ const cli = meow([
 
 var running = true
 
-const isDone = function isDone(w) {
+const isDone = function isDone (w) {
   if (!w) { w = 300 }
   setTimeout(() => {
     if (running) { isDone(w) }
   }, w)
-}()
+}
 
 rollodeqcGhRepos(cli.input[0] || 'unicorns')
   .then((x) => {
@@ -58,3 +58,5 @@ rollodeqcGhRepos(cli.input[0] || 'unicorns')
     console.log('Oh my...', e)
     running = false
   })
+
+isDone()
