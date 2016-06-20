@@ -29,18 +29,18 @@
   ],
   "dependencies": {
     "gh-got": "^4.0.0",
-    "lodash.omitby": "^4.3.0",
+    "lodash.omitby": "^4.4.0",
     "meow": "^3.7.0",
     "rate-limit-promise": "^1.0.2",
-    "rollodeqc-gh-bookworm": "^0.3.0",
-    "rollodeqc-gh-utils": "^0.3.0"
+    "rollodeqc-gh-bookworm": "^0.3.1",
+    "rollodeqc-gh-utils": "^0.3.1"
   },
   "devDependencies": {
-    "ava": "^0.14.0",
+    "ava": "^0.15.2",
     "babel-eslint": "^6.0.4",
     "coveralls": "^2.11.9",
-    "nyc": "^6.4.3",
-    "standard": "^7.0.1"
+    "nyc": "^6.6.1",
+    "standard": "^7.1.2"
   },
   "standard": {
     "parser": "babel-eslint"
