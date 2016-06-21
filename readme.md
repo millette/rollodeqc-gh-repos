@@ -43,7 +43,7 @@ $ rollodeqc-gh-repos --help
     rollodeqc-gh-repos [input]
 
   Options
-    --foo  Lorem ipsum. [Default: false]
+    --exclude-languages  Don\'t fetch languages. [Default: false]
 
   Examples
     $ rollodeqc-gh-repos

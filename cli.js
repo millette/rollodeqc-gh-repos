@@ -27,28 +27,25 @@ const rollodeqcGhRepos = require('./')
 
 const cli = meow([
   'Usage',
-  '  $ rollodeqc-gh-repos [input]',
+  '  $ rollodeqc-gh-repos [username]',
   '',
   'Options',
-  '  --foo  Lorem ipsum. [Default: false]',
+  '  --exclude-languages  Don\'t fetch languages. [Default: false]',
   '',
   'Examples',
   '  $ rollodeqc-gh-repos',
   '  unicorns & rainbows',
   '  $ rollodeqc-gh-repos ponies',
   '  ponies & rainbows'
-])
+], {
+  boolean: true
+})
+
+const excludeLanguages = cli.flags['excludeLanguages']
 
 var running = true
 
-const isDone = function isDone (w) {
-  if (!w) { w = 300 }
-  setTimeout(() => {
-    if (running) { isDone(w) }
-  }, w)
-}
-
-rollodeqcGhRepos(cli.input[0] || 'unicorns')
+rollodeqcGhRepos(cli.input[0] || 'millette', excludeLanguages)
   .then((x) => {
     console.log(JSON.stringify(x, null, ' '))
     running = false
@@ -58,4 +55,12 @@ rollodeqcGhRepos(cli.input[0] || 'unicorns')
     running = false
   })
 
-isDone()
+if (!excludeLanguages) {
+  const isDone = function isDone (w) {
+    if (!w) { w = 300 }
+    setTimeout(() => {
+      if (running) { isDone(w) }
+    }, w)
+  }
+  isDone()
+}
