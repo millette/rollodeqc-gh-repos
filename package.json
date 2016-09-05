@@ -28,19 +28,19 @@
     "rollodeqc"
   ],
   "dependencies": {
-    "gh-got": "^4.0.0",
-    "lodash.omitby": "^4.4.0",
+    "gh-got": "^5.0.0",
+    "lodash.omitby": "^4.6.0",
     "meow": "^3.7.0",
     "rate-limit-promise": "^1.0.2",
     "rollodeqc-gh-bookworm": "^0.3.1",
-    "rollodeqc-gh-utils": "^0.3.1"
+    "rollodeqc-gh-utils": "^0.3.3"
   },
   "devDependencies": {
-    "ava": "^0.15.2",
-    "babel-eslint": "^6.0.5",
-    "coveralls": "^2.11.9",
-    "nyc": "^6.6.1",
-    "standard": "^7.1.2"
+    "ava": "^0.16.0",
+    "babel-eslint": "^6.1.2",
+    "coveralls": "^2.11.12",
+    "nyc": "^8.1.0",
+    "standard": "^8.0.0"
   },
   "standard": {
     "parser": "babel-eslint"
