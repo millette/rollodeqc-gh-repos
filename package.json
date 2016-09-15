@@ -33,7 +33,7 @@
     "meow": "^3.7.0",
     "rate-limit-promise": "^1.0.2",
     "rollodeqc-gh-bookworm": "^0.3.1",
-    "rollodeqc-gh-utils": "^0.3.3"
+    "rollodeqc-gh-utils": "^0.3.4"
   },
   "devDependencies": {
     "ava": "^0.16.0",
