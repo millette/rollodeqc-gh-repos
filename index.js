@@ -60,9 +60,9 @@ const fetchLanguagesImp = (repo) => ghGot(`repos/${repo.full_name}/languages`)
 const fetchLanguages = (repo) => limiter()
   .then(() => fetchLanguagesImp(repo))
 
-module.exports = (username, excludeLanguages) => bookworm.bookworm({
+module.exports = (username, excludeLanguages, type) => bookworm.bookworm({
   username: username,
-  type: 'all',
+  type: type || 'all',
   sort: 'created',
   direction: 'asc',
   per_page: 100
