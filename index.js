@@ -80,7 +80,7 @@ module.exports = (username, excludeLanguages, type) => bookworm.bookworm({
   .then((x) => excludeLanguages ? x
     : utils.rateLimit().then((rl) => {
       limiter = module.exports.setLimiter(
-        5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
+        5, Math.ceil(5 * ((1000 * rl.rate.reset) - Date.now()) / rl.rate.remaining))
       return Promise.all(x.map((y) => fetchLanguages(y)))
     })
   )
