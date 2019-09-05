@@ -47,7 +47,7 @@ const cli = meow([
   boolean: true
 })
 
-const excludeLanguages = cli.flags['excludeLanguages']
+const excludeLanguages = cli.flags.excludeLanguages
 
 var running = true
 
