@@ -36,7 +36,7 @@ const cli = meow(`
     $ rollodeqc-gh-repos [username]
 
   Options
-    --exclude-languages  Don\'t fetch languages. [Default: false]
+    --exclude-languages  Don't fetch languages. [Default: false]
 
   Examples
     $ rollodeqc-gh-repos
