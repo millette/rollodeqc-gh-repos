@@ -31,19 +31,19 @@ updateNotifier({ pkg: require('./package.json') }).notify()
 // self
 const rollodeqcGhRepos = require('./')
 
-const cli = meow([
-  'Usage',
-  '  $ rollodeqc-gh-repos [username]',
-  '',
-  'Options',
-  '  --exclude-languages  Don\'t fetch languages. [Default: false]',
-  '',
-  'Examples',
-  '  $ rollodeqc-gh-repos',
-  '  unicorns & rainbows',
-  '  $ rollodeqc-gh-repos ponies',
-  '  ponies & rainbows'
-], {
+const cli = meow(`
+  Usage
+    $ rollodeqc-gh-repos [username]
+
+  Options
+    --exclude-languages  Don\'t fetch languages. [Default: false]
+
+  Examples
+    $ rollodeqc-gh-repos
+    unicorns & rainbows
+    $ rollodeqc-gh-repos ponies
+    ponies & rainbows
+`, {
   boolean: true
 })
 
