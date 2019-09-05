@@ -11,7 +11,7 @@
   },
   "bin": "cli.js",
   "engines": {
-    "node": ">=4"
+    "node": ">=8"
   },
   "scripts": {
     "lint": "standard",
@@ -37,9 +37,9 @@
     "update-notifier": "^2.2.0"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
-    "coveralls": "^2.13.1",
-    "nyc": "^11.0.2",
+    "ava": "^2.3.0",
+    "coveralls": "^3.0.6",
+    "nyc": "^14.1.1",
     "standard": "^14.1.0"
   }
 }
